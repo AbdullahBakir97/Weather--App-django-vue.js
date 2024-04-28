@@ -1,10 +1,15 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 import requests
+import os
+from dotenv import load_dotenv
+
+
+load_dotenv()
 
 def get_weather(request):
-    api_key = 'vUbDFPiVGydzGkTtrmsgoNHPkm48T7Fh'
-    location = request.GET.get('location', 'dallas')  # Default to 'dallas' if location is not provided
+    api_key = os.environ.get('TOMORROW_API_KEY')
+    location = request.GET.get('location', 'Berlin') 
     url = f"https://api.tomorrow.io/v4/weather/realtime?location={location}&apikey={api_key}"
     headers = {"accept": "application/json"}
 
@@ -19,7 +24,7 @@ def get_city_coordinates(request):
     if request.method == 'GET':
         city = request.GET.get('city', '')
 
-        api_key = 'AIzaSyBUrr3BNxCGHK4wSj_jZ5OR0aL_RLwVPVc'
+        api_key = os.environ.get('GOOGLE_API_KEY')
         geocoding_url = f'https://maps.googleapis.com/maps/api/geocode/json?address={city}&key={api_key}'
 
         try:
