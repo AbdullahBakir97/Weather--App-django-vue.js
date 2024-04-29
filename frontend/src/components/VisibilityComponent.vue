@@ -1,11 +1,11 @@
 <template>
-    <p>Cloud Cover: {{ cloudCover }}%</p>
+    <p>Visibility: {{ visibility }} meters</p>
   </template>
   
   <script>
   export default {
     props: {
-      cloudCover: Number,
+      visibility: Number,
     },
   };
   </script>

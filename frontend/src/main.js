@@ -1,27 +1,23 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import axios from 'axios'
-import Vuetify from 'vuetify';
+import { createApp } from 'vue';
+import App from './App.vue';
+import axios from 'axios';
 import 'vuetify/dist/vuetify.min.css';
+import '@mdi/font/css/materialdesignicons.css'
+import { createVuetify } from 'vuetify';
+import * as components from 'vuetify/components';
+import * as directives from 'vuetify/directives';
+import moment from 'moment';
 
-const app = createApp(App)
-app.config.productionTip = false
+const currentTime = moment().format('YYYY-MM-DD HH:mm:ss');
+console.log(currentTime);
+
+const vuetify = createVuetify({
+  components,
+  directives,
+});
+
+const app = createApp(App);
+
 app.config.globalProperties.$http = axios;
 
-// Use Vuetify
-app.use(Vuetify);
-
-app.mount('#app');
-
-const env = dotenv.config().parsed;
-
-module.exports = {
-  // Your webpack configuration
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env': JSON.stringify(env)
-    })
-  ]
-};
-const tomorrowApiKey = process.env.TOMORROW_API_KEY;
-const googleApiKey = process.env.GOOGLE_API_KEY;
+app.use(vuetify).mount('#app');

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <WeatherDisplay />
+    <WeatherDisplay :location="location" />
   </div>
 </template>
 
@@ -12,5 +12,13 @@ export default {
   components: {
     WeatherDisplay,
   },
-}
+  data() {
+    return {
+      location: {
+        name: 'Berlin', // Replace with actual location data
+        // Other location properties
+      },
+    };
+  },
+};
 </script>

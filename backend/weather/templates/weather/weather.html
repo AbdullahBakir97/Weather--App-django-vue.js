@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+</head>
+<body>
+    <h1>Weather</h1>
+    <form id="locationForm">
+        <label for="location">Enter Location:</label>
+        <input type="text" id="location" name="location" required>
+        <button type="submit">Get Weather</button>
+    </form>
+
+    <div id="weatherData"></div>
+
+    <script>
+        const form = document.getElementById('locationForm');
+        const weatherDataDiv = document.getElementById('weatherData');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const location = form.elements['location'].value;
+
+            try {
+                const response = await fetch(`/get_weather/?location=${location}`);
+                const data = await response.json();
+
+                if (data.error) {
+                    weatherDataDiv.innerHTML = `<p>Error: ${data.error}</p>`;
+                } else {
+                    weatherDataDiv.innerHTML = `
+                        <p>Temperature: ${data.data.values.temperature}°C</p>
+                        <p>Humidity: ${data.data.values.humidity}%</p>
+                        <!-- Add more weather data here -->
+                    `;
+                }
+            } catch (error) {
+                console.error('Error fetching weather data:', error);
+                weatherDataDiv.innerHTML = '<p>Error fetching weather data.</p>';
+            }
+        });
+    </script>
+</body>
+</html>
