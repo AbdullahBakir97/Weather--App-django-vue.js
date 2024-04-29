@@ -22,9 +22,6 @@ Welcome to the Weather App! This is a simple web application built using Vue.js 
 - Tomorrow.io Weather API
 - Moment.js
 
-## Demo
-
-You can try out the Weather App live [here](#).
 
 ## Installation
 
