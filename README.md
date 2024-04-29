@@ -61,8 +61,14 @@ To run the Weather App locally, follow these steps:
 - Use the slider to navigate through the forecast for upcoming days.
 
 ## Credits
-Weather data provided by Tomorrow.io.
-Icons from Material Design Icons.
+- Weather data provided by Tomorrow.io.
+- Icons from Material Design Icons.
+
+## Contributing
+
+Contributions are welcome! If you have any suggestions, bug reports, or feature requests, please open an issue on GitHub or submit a pull request.
 
 ## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+
+This project is licensed under the [MIT License](LICENSE).
+
