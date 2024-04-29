@@ -1,5 +1,9 @@
 <template>
-  <v-card class="mx-auto" max-width="600">
+  <v-card class="mx-auto mt-5" max-width="600" loading="loading" text="Fetching weather data..." variant="tonal">
+    <div>
+      <input class="full-width-input" type="text" v-model="city" @keyup.enter="fetchWeatherData" placeholder="Enter city name...">
+      <!-- Add other UI elements here -->
+    </div>
     <v-card-item :title="location.name">
       <template v-slot:subtitle>
         <v-icon
@@ -133,6 +137,8 @@ export default {
   },
   data() {
     return {
+      city: '',
+      loading: false, // Add loading state
       currentWeather: {},
       labels: {
         0: moment().format('ddd'), // Current day
@@ -161,8 +167,10 @@ export default {
   methods: {
     async fetchWeather(dayIndex) {
       try {
+        this.loading = true; // Set loading state to true
+
         const api_key = 'vUbDFPiVGydzGkTtrmsgoNHPkm48T7Fh';
-        const location = 'berlin'; // Or use dynamic location from your application
+        const location = this.city;
         const url = `https://api.tomorrow.io/v4/weather/realtime?location=${location}&apikey=${api_key}&day=${dayIndex}`;
 
         const response = await axios.get(url);
@@ -195,6 +203,8 @@ export default {
         this.updateForecast(dayIndex);
       } catch (error) {
         console.error('Error fetching weather data:', error);
+      } finally {
+        this.loading = false; // Set loading state back to false regardless of success or failure
       }
     },
     updateForecast(dayIndex) {
@@ -211,11 +221,19 @@ export default {
       // For simplicity, I'll assume weatherCode corresponds to icon names
       return 'mdi-' + weatherCode;
     },
+    fetchWeatherData() {
+      // Fetch weather data when user presses Enter
+      this.fetchWeather(this.time);
+    },
   },
 };
 </script>
 
-
 <style scoped>
-/* Add custom styles here */
+  .full-width-input {
+    padding: 5px;
+    margin: 10px;
+    width: 35%;
+  }
+
 </style>

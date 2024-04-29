@@ -15,7 +15,7 @@ export default {
   data() {
     return {
       location: {
-        name: 'Berlin', // Replace with actual location data
+        name: '', // Replace with actual location data
         // Other location properties
       },
     };
