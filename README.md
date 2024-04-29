@@ -1,6 +1,6 @@
 # Weather App using django & Vue
 
-![2024-04-29](https://github.com/AbdullahBakir97/Weather--App-using-django-vue.js/assets/127149804/567cb6d7-b57f-4bc0-9759-0f5ab0c357c9)
+![2024-04-29 (1)](https://github.com/AbdullahBakir97/Weather--App-using-django-vue.js/assets/127149804/09e59fba-07dc-4742-890a-38210edb84c0)
 
 ## Overview
 
