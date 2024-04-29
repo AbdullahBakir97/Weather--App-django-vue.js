@@ -5,7 +5,8 @@
 
 ## Overview
 
-Welcome to the Weather App! This is a simple web application built using Vue.js and powered by the Tomorrow.io Weather API to provide real-time weather information.
+
+Welcome to the Weather App! This dynamic web application, crafted with Django and Vue.js, seamlessly integrates the Tomorrow.io Weather API to provide up-to-the-minute weather forecasts. With its intuitive search feature powered by the Google Maps API, stay informed about weather conditions anywhere in the world.
 
 ## Features
 
