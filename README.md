@@ -13,6 +13,7 @@ Welcome to the Weather App! This is a simple web application built using Vue.js 
 - Show current temperature, wind speed, precipitation probability, and more.
 - Toggle to view a full weather report with additional details.
 - Use a slider to view weather forecast for upcoming days.
+- Search input for entering the desired location to fetch weather data.
 
 ## Technologies Used
 
@@ -20,8 +21,9 @@ Welcome to the Weather App! This is a simple web application built using Vue.js 
 - Vue.js
 - Vuetify
 - Axios
-- Tomorrow.io Weather API
 - Moment.js
+- Tomorrow.io Weather API
+- Google Maps API for location search
 
 
 ## Installation
@@ -64,6 +66,7 @@ To run the Weather App locally, follow these steps:
 ## Credits
 - Weather data provided by Tomorrow.io.
 - Icons from Material Design Icons.
+- Location search powered by Google Maps API.
 
 ## Contributing
 
