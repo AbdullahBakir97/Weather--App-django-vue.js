@@ -15,6 +15,7 @@ Welcome to the Weather App! This is a simple web application built using Vue.js 
 
 ## Technologies Used
 
+- Django
 - Vue.js
 - Vuetify
 - Axios
@@ -31,9 +32,9 @@ To run the Weather App locally, follow these steps:
 
 1. *Clone the repository*:
 
-   ```
-   git clone https://github.com/your-username/weather-app.git
-   ```
+  ```
+  git clone https://github.com/your-username/weather-app.git
+  ```
 2. *Navigate to the project directory*:
 
   ```
