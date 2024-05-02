@@ -173,58 +173,53 @@ export default {
         const location = this.city;
         const url = `https://api.tomorrow.io/v4/weather/realtime?location=${location}&apikey=${api_key}&day=${dayIndex}`;
 
-        const response = await axios.get(url);
-        const weatherData = response.data.data;
-
-        this.currentWeather = {
-          temperature: weatherData.values.temperature,
-          temperatureApparent: weatherData.values.temperatureApparent,
-          humidity: weatherData.values.humidity,
-          windSpeed: weatherData.values.windSpeed,
-          windDirection: weatherData.values.windDirection,
-          windGust: weatherData.values.windGust,
-          cloudCover: weatherData.values.cloudCover,
-          cloudBase: weatherData.values.cloudBase,
-          cloudCeiling: weatherData.values.cloudCeiling,
-          dewPoint: weatherData.values.dewPoint,
-          precipitationProbability: weatherData.values.precipitationProbability,
-          rainIntensity: weatherData.values.rainIntensity,
-          sleetIntensity: weatherData.values.sleetIntensity,
-          snowIntensity: weatherData.values.snowIntensity,
-          freezingRainIntensity: weatherData.values.freezingRainIntensity,
-          uvIndex: weatherData.values.uvIndex,
-          uvHealthConcern: weatherData.values.uvHealthConcern,
-          weatherCode: weatherData.values.weatherCode,
-          visibility: weatherData.values.visibility,
-          // Add more weather data fields as needed
-          icon: this.getWeatherIcon(weatherData.values.weatherCode), // Assuming weatherCode corresponds to icon names
-        };
-
-        this.updateForecast(dayIndex);
-      } catch (error) {
-        console.error('Error fetching weather data:', error);
-      } finally {
-        this.loading = false; // Set loading state back to false regardless of success or failure
-      }
-    },
-    updateForecast(dayIndex) {
-      // Logic to update forecast based on selected day
-      // For simplicity, I'll just update the temperature for the next few days
-      this.forecast = [
-        { day: this.labels[dayIndex], icon: 'mdi-white-balance-sunny', temp: `${this.currentWeather.temperature}\xB0/${this.currentWeather.temperatureApparent}\xB0` },
-        { day: this.labels[dayIndex + 1], icon: 'mdi-cloud', temp: '25\xB0/15\xB0' },
-        { day: this.labels[dayIndex + 2], icon: 'mdi-cloud', temp: '25\xB0/15\xB0' },
-      ];
-    },
-    getWeatherIcon(weatherCode) {
-      // You can implement a logic to map weather codes to icon names here
-      // For simplicity, I'll assume weatherCode corresponds to icon names
-      return 'mdi-' + weatherCode;
-    },
-    fetchWeatherData() {
-      // Fetch weather data when user presses Enter
-      this.fetchWeather(this.time);
-    },
+		    const response = await axios.get(url);
+		    const weatherData = response.data.data;
+		
+		    this.currentWeather = {
+		      temperature: weatherData.values.temperature,
+		      temperatureApparent: weatherData.values.temperatureApparent,
+		      humidity: weatherData.values.humidity,
+		      windSpeed: weatherData.values.windSpeed,
+		      windDirection: weatherData.values.windDirection,
+		      windGust: weatherData.values.windGust,
+		      cloudCover: weatherData.values.cloudCover,
+		      cloudBase: weatherData.values.cloudBase,
+		      cloudCeiling: weatherData.values.cloudCeiling,
+		      dewPoint: weatherData.values.dewPoint,
+		      precipitationProbability: weatherData.values.precipitationProbability,
+		      rainIntensity: weatherData.values.rainIntensity,
+		      sleetIntensity: weatherData.values.sleetIntensity,
+		      snowIntensity: weatherData.values.snowIntensity,
+		      freezingRainIntensity: weatherData.values.freezingRainIntensity,
+		      uvIndex: weatherData.values.uvIndex,
+		      uvHealthConcern: weatherData.values.uvHealthConcern,
+		      weatherCode: weatherData.values.weatherCode,
+		      visibility: weatherData.values.visibility,
+		    };
+		
+		    this.updateForecast(dayIndex);
+		  } catch (error) {
+		    console.error('Error fetching weather data:', error);
+		  } finally {
+		    this.loading = false;
+		  }
+		},
+		updateForecast(dayIndex) {
+		  if (!this.currentWeather.forecast) return;
+		
+		  this.forecast = this.currentWeather.forecast[dayIndex].hourly.map(hour => ({
+		    time: moment.unix(hour.observation_time).format('h A'),
+		    icon: this.getWeatherIcon(hour.weather_code),
+		    temp: `${hour.temperature}\xB0`,
+		  }));
+		},
+		getWeatherIcon(weatherCode) {
+		  return 'mdi-' + weatherCode;
+		},
+		fetchWeatherData() {
+		  this.fetchWeather(this.time);
+		},
   },
 };
 </script>
