@@ -169,7 +169,7 @@ export default {
       try {
         this.loading = true; // Set loading state to true
 
-        const api_key = 'vUbDFPiVGydzGkTtrmsgoNHPkm48T7Fh';
+        const api_key = '';
         const location = this.city;
         const url = `https://api.tomorrow.io/v4/weather/realtime?location=${location}&apikey=${api_key}&day=${dayIndex}`;
 
